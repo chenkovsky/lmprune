@@ -4,7 +4,7 @@
 template <class T> LanguageModel* LanguageModel::load(T &in) {
     LanguageModel *lm = NULL;
     cerr << "[LOADING] start loading..." << endl;
-    string str;
+    string str, word;
     size_t ngram_num_per_order[MAX_ORDER];
     word_id_t word_ids[MAX_ORDER];
     uint32_t order = 0;
@@ -38,8 +38,13 @@ template <class T> LanguageModel* LanguageModel::load(T &in) {
         for (uint32_t i = 0; i < cur_order; i++) {
             token_start = str.find_first_not_of("\t ", token_end);
             token_end = str.find_first_of("\t ", token_start);
-            string word = str.substr(token_start, token_end - token_start);
-            word_ids[i] = lm->word2Idx_append_if_not_exist(word);
+            word.assign(str, token_start, token_end - token_start);
+            if(i == 0){
+                word_ids[i] = lm->word2Idx_append_if_not_exist(word);
+            }else{
+                word_ids[i] = lm->word2Idx(word);
+                assert(word_ids[i] != -1);
+            }
         }
         prob_t bow = 0;
         if (token_end != string::npos) {
