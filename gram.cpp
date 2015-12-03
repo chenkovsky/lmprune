@@ -1,6 +1,6 @@
 ﻿#include "gram.hpp"
 bool GramNode::operator==(const GramNode &r) const{
-    if (gram_id != -1 && r.gram_id != -1) {
+    if (gram_id != (size_t)-1 && r.gram_id != (size_t)-1) {
       return gram_id == r.gram_id;
     }
     //如果能够比较gram_id就比较gram_id,加快速度，如果不行，就比较每个word的id

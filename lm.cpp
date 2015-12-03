@@ -150,7 +150,7 @@ const GramNode* LanguageModel::gram(const vector<string> & vec){
     uint32_t order = vec.size();
     for (uint32_t i = 0; i < order;i++) {
         words[i] = word2Idx(vec[i]);
-        if (words[i] == -1) {
+        if (words[i] == (word_id_t)-1) {
             return NULL;
         }
     }

@@ -23,12 +23,14 @@ static const prob_t LogP_Inf = HUGE_VAL;            /* log(Inf) */
 static const prob_t LogP_One = 0.0;  /* log(1) */
 static const prob_t Prob_Epsilon = 3e-06;
 static const prob_t min_log_prob = -99;
+#ifndef __USE_GNU
 static inline double exp10(double d) {
     if (d == LogP_Zero) {
         return 0.0;
     }
     return exp(d * M_LN10);
 }
+#endif
 
 namespace std {
 template<> struct hash<GramNode *> {

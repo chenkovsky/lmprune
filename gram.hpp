@@ -1,6 +1,7 @@
 ﻿#ifndef __GRAM_HPP__
 #define __GRAM_HPP__ 1
 #include <cstdlib>
+#include <cstdint>
 #define MAX_ORDER 10
 typedef uint32_t word_id_t;
 typedef double prob_t;
